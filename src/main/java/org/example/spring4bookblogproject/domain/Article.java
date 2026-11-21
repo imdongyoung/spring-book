@@ -18,7 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @EntityListeners(AuditingEntityListener.class)
-@Entity
+@Entity(name = "articles")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Article {
@@ -33,10 +33,14 @@ public class Article {
 	@Column(name = "content", nullable = false)
 	private String content;
 
+	@Column(name = "author", nullable = false)
+	private String author;
+
 	@Builder
-	public Article(String title, String content) {
+	public Article(String title, String content, String author) {
 		this.title = title;
 		this.content = content;
+		this.author = author;
 	}
 
 	@CreatedDate

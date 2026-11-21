@@ -7,14 +7,26 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.schema.internal.script.MultiLineSqlScriptExtractor
+      # 테이블 생성 후에 data.sql 실행
+      defer-datasource-initialization: true
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa
   h2:
     console:
       enabled: true
-    # 테이블 생성 후에 data.sql 실행
-    defer-datasource-initialization: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 606522279356-n37si75q893c9ah1t6ft9n1pus1hf85e.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
 jwt:
   issuer: imdong207@gmail.com
   secret-key: study-springboot

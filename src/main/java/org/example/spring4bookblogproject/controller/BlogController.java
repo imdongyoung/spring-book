@@ -1,5 +1,6 @@
 package org.example.spring4bookblogproject.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.example.spring4bookblogproject.domain.Article;
@@ -26,9 +27,10 @@ public class BlogController {
 
 	@PostMapping("/api/articles")
 	public ResponseEntity<Article> addArticle(
-		@RequestBody AddArticleRequest request
+		@RequestBody AddArticleRequest request,
+		Principal principal
 	) {
-		Article newArticle = blogService.save(request);
+		Article newArticle = blogService.save(request, principal.getName());
 
 		return ResponseEntity
 			.status(HttpStatus.CREATED)
